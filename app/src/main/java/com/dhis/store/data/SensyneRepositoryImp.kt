@@ -2,8 +2,8 @@ package com.dhis.store.data
 
 import android.content.Context
 import android.util.Log
-import com.dhis.store.core.StoreRepository
-import com.dhis.store.core.entity.DhisApp
+import com.dhis.store.core.SensyneRepository
+import com.dhis.store.core.entity.Hospital
 import com.dhis.store.data.local.LocalDataSource
 import com.dhis.store.data.local.model.toDbEntity
 import com.dhis.store.data.network.ApiService
@@ -12,17 +12,17 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.net.ConnectException
 
-class StoreRepositoryImp(
+class SensyneRepositoryImp(
     private val apiService: ApiService,
     private val localDataSource: LocalDataSource
-) : StoreRepository {
+) : SensyneRepository {
 
-    override suspend fun getApps(): Flow<List<DhisApp>> {
+    override suspend fun getHospitals(): Flow<List<Hospital>> {
         refreshDBApps()
         return localDataSource.getApps().map { it.map { dbApp -> dbApp.toDomainEntity() } }
     }
 
-    override suspend fun getApp(id: Int): Flow<DhisApp> =
+    override suspend fun getHospital(id: Int): Flow<Hospital> =
         localDataSource.getApp(id).map { dbApp -> dbApp.toDomainEntity() }
 
     private suspend fun refreshDBApps() = try {
@@ -34,7 +34,7 @@ class StoreRepositoryImp(
 
     companion object {
         @Volatile
-        private var instance: StoreRepository? = null
+        private var instance: SensyneRepository? = null
 
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -43,8 +43,8 @@ class StoreRepositoryImp(
                 }
             }
 
-        private fun buildInstance(context: Context): StoreRepository {
-            return StoreRepositoryImp(
+        private fun buildInstance(context: Context): SensyneRepository {
+            return SensyneRepositoryImp(
                 InjectorUtils.provideApiService(),
                 LocalDataSource.getInstance(context)
             )

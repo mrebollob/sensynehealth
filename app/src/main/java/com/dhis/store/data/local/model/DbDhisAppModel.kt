@@ -2,7 +2,7 @@ package com.dhis.store.data.local.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.dhis.store.core.entity.DhisApp
+import com.dhis.store.core.entity.Hospital
 import java.util.*
 
 @Entity(tableName = "apps")
@@ -16,8 +16,8 @@ data class DbDhisAppModel(
     val rating: Float,
     val sizeInMB: Int
 ) {
-    fun toDomainEntity(): DhisApp {
-        return DhisApp(
+    fun toDomainEntity(): Hospital {
+        return Hospital(
             id = id,
             title = title,
             description = description,
@@ -30,7 +30,7 @@ data class DbDhisAppModel(
     }
 }
 
-fun DhisApp.toDbEntity() = with(this) {
+fun Hospital.toDbEntity() = with(this) {
     DbDhisAppModel(
         id = id,
         title = title,

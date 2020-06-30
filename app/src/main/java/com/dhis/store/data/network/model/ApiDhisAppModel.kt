@@ -1,6 +1,6 @@
 package com.dhis.store.data.network.model
 
-import com.dhis.store.core.entity.DhisApp
+import com.dhis.store.core.entity.Hospital
 
 data class ApiDhisAppModel(
     val author: String,
@@ -12,8 +12,8 @@ data class ApiDhisAppModel(
     val title: String,
     val version: String
 ) {
-    fun toDomainEntity(): DhisApp {
-        return DhisApp(
+    fun toDomainEntity(): Hospital {
+        return Hospital(
             id = id,
             title = title,
             description = description,

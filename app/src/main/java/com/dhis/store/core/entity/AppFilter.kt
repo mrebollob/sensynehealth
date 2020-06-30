@@ -9,17 +9,17 @@ data class AppFilter(
     val endDate: Date? = null
 ) {
 
-    fun filter(app: DhisApp): Boolean {
+    fun filter(app: Hospital): Boolean {
         return matchAuthor(app) &&
                 matchSize(app) &&
                 matchDate(app)
     }
 
-    private fun matchAuthor(app: DhisApp): Boolean =
+    private fun matchAuthor(app: Hospital): Boolean =
         author.isEmpty() || app.author.contains(author)
 
-    private fun matchSize(app: DhisApp): Boolean = maxSize == null || app.sizeInMB <= maxSize
+    private fun matchSize(app: Hospital): Boolean = maxSize == null || app.sizeInMB <= maxSize
 
-    private fun matchDate(app: DhisApp): Boolean = (startDate == null || endDate == null) ||
+    private fun matchDate(app: Hospital): Boolean = (startDate == null || endDate == null) ||
             app.publishDate.time in startDate.time..endDate.time
 }

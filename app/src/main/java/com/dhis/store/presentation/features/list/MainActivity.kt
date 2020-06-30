@@ -24,7 +24,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val appListViewModel: AppListViewModel by viewModels {
+    private val listViewModel: ListViewModel by viewModels {
         InjectorUtils.provideAppListViewModelFactory(this)
     }
 
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI(binding: ActivityMainBinding) {
-        val adapter = AppsAdapter(
+        val adapter = HospitalsAdapter(
             clickListener = { id -> DetailsActivity.open(this, id) }
         )
 
@@ -45,19 +45,19 @@ class MainActivity : AppCompatActivity() {
             setSupportActionBar(toolbar)
             supportActionBar?.title = ""
             appList.adapter = adapter
-            viewModel = appListViewModel
+            viewModel = listViewModel
 
-            appListViewModel.apps.observe(this@MainActivity) { apps ->
+            listViewModel.apps.observe(this@MainActivity) { apps ->
                 emptyView.visible(apps.isEmpty())
                 appList.visible(apps.isNotEmpty())
                 adapter.submitList(apps)
             }
 
-            appListViewModel.screenState.observe(this@MainActivity) { state ->
+            listViewModel.screenState.observe(this@MainActivity) { state ->
                 handleScreenState(binding, state)
             }
 
-            appListViewModel.appFilter.observe(this@MainActivity) { appFilter ->
+            listViewModel.appFilter.observe(this@MainActivity) { appFilter ->
 
                 if (appFilter.startDate != null &&
                     appFilter.endDate != null
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            appListViewModel.filters.observe(this@MainActivity) { filters ->
+            listViewModel.filters.observe(this@MainActivity) { filters ->
                 author_filter_view.visible(filters.contains(FilterType.AUTHOR))
                 size_filter_view.visible(filters.contains(FilterType.SIZE))
                 date_filter_value.visible(filters.contains(FilterType.DATE))
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     clear_date_selector.setOnClickListener {
-                        appListViewModel.onDateFilterChanged(null, null)
+                        listViewModel.onDateFilterChanged(null, null)
                     }
                 }
 
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                         fromUser: Boolean
                     ) {
                         size_filter_value.text = getString(R.string.app_size_format, progress)
-                        appListViewModel.onSizeFilterChanged(progress)
+                        listViewModel.onSizeFilterChanged(progress)
                     }
 
                     override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             is ErrorState -> binding.appList.snack(message = "Error",
                 length = Snackbar.LENGTH_INDEFINITE,
                 actionText = "Retry",
-                action = { appListViewModel.loadApps() })
+                action = { listViewModel.loadApps() })
         }
     }
 
@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
                 endCalendar.set(Calendar.MONTH, monthEnd)
                 endCalendar.set(Calendar.DAY_OF_MONTH, dayEnd)
 
-                appListViewModel.onDateFilterChanged(startCalendar.time, endCalendar.time)
+                listViewModel.onDateFilterChanged(startCalendar.time, endCalendar.time)
             }
 
         smoothDateRangePickerFragment.maxDate = Calendar.getInstance()

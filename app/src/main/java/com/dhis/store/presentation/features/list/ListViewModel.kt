@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dhis.store.core.StoreRepository
+import com.dhis.store.core.SensyneRepository
 import com.dhis.store.core.entity.AppFilter
-import com.dhis.store.core.entity.DhisApp
+import com.dhis.store.core.entity.Hospital
 import com.dhis.store.core.entity.Failure
 import com.dhis.store.core.entity.FilterType
 import com.dhis.store.presentation.ErrorState
@@ -21,11 +21,11 @@ import java.util.*
 
 const val MAX_APP_SIZE = 100
 
-class AppListViewModel(
-    private val storeRepository: StoreRepository
+class ListViewModel(
+    private val sensyneRepository: SensyneRepository
 ) : ViewModel() {
 
-    private var appList: MutableList<DhisApp> = mutableListOf()
+    private var appList: MutableList<Hospital> = mutableListOf()
 
     private val _maxSize = MutableLiveData<Int>()
     val maxSize: LiveData<Int> get() = _maxSize
@@ -33,8 +33,8 @@ class AppListViewModel(
     private val _appFilter = MutableLiveData<AppFilter>()
     val appFilter: LiveData<AppFilter> get() = _appFilter
 
-    private val _apps = MutableLiveData<List<DhisApp>>()
-    val apps: LiveData<List<DhisApp>> get() = _apps
+    private val _apps = MutableLiveData<List<Hospital>>()
+    val apps: LiveData<List<Hospital>> get() = _apps
 
     private val _filters = MutableLiveData<List<FilterType>>()
     val filters: LiveData<List<FilterType>> get() = _filters
@@ -51,7 +51,7 @@ class AppListViewModel(
     @ExperimentalCoroutinesApi
     fun loadApps() {
         viewModelScope.launch {
-            storeRepository.getApps()
+            sensyneRepository.getHospitals()
                 .onStart { _screenState.value = LoadingState }
                 .catch { exception ->
                     exception.printStackTrace()

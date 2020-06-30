@@ -58,7 +58,7 @@
                     android:paddingTop="@dimen/header_margin"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="@integer/home_list_span_count"
-                    tools:listitem="@layout/item_app"
+                    tools:listitem="@layout/item_hospital"
                     tools:visibility="gone" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
@@ -94,6 +94,6 @@
 
         <variable
             name="viewModel"
-            type="com.dhis.store.presentation.features.list.AppListViewModel" />
+            type="com.dhis.store.presentation.features.list.ListViewModel" />
     </data>
 </layout>

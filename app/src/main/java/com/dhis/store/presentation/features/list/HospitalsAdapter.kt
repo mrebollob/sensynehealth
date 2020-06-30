@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dhis.store.core.entity.DhisApp
-import com.dhis.store.databinding.ItemAppBinding
+import com.dhis.store.core.entity.Hospital
+import com.dhis.store.databinding.ItemHospitalBinding
 
-class AppsAdapter(
+class HospitalsAdapter(
     private val clickListener: (Int) -> Unit
-) : ListAdapter<DhisApp, RecyclerView.ViewHolder>(AppDiffCallback()) {
+) : ListAdapter<Hospital, RecyclerView.ViewHolder>(AppDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return AppViewHolder(
-            ItemAppBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            ItemHospitalBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             clickListener
         )
     }
@@ -25,7 +25,7 @@ class AppsAdapter(
     }
 
     class AppViewHolder(
-        private val binding: ItemAppBinding,
+        private val binding: ItemHospitalBinding,
         private val clickListener: (Int) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
@@ -34,7 +34,7 @@ class AppsAdapter(
             binding.setClickListener { binding.app?.let { clickListener(it.id) } }
         }
 
-        fun bind(item: DhisApp) {
+        fun bind(item: Hospital) {
             binding.apply {
                 app = item
                 executePendingBindings()
@@ -43,11 +43,11 @@ class AppsAdapter(
     }
 }
 
-private class AppDiffCallback : DiffUtil.ItemCallback<DhisApp>() {
+private class AppDiffCallback : DiffUtil.ItemCallback<Hospital>() {
 
-    override fun areItemsTheSame(oldItem: DhisApp, newItem: DhisApp): Boolean =
+    override fun areItemsTheSame(oldItem: Hospital, newItem: Hospital): Boolean =
         oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: DhisApp, newItem: DhisApp): Boolean =
+    override fun areContentsTheSame(oldItem: Hospital, newItem: Hospital): Boolean =
         oldItem == newItem
 }

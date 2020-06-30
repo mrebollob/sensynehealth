@@ -1,6 +1,6 @@
 package com.dhis.store.utils
 
-import com.dhis.store.core.entity.DhisApp
+import com.dhis.store.core.entity.Hospital
 import com.dhis.store.data.network.model.ApiDhisAppModel
 import java.util.*
 
@@ -52,10 +52,10 @@ object TestDataProvider {
         )
     }
 
-    fun getTestApps(): List<DhisApp> {
+    fun getTestApps(): List<Hospital> {
 
         return listOf(
-            DhisApp(
+            Hospital(
                 id = 0,
                 title = "App 0",
                 description = "App 0",
@@ -65,7 +65,7 @@ object TestDataProvider {
                 rating = 3.2f,
                 sizeInMB = 16
             ),
-            DhisApp(
+            Hospital(
                 id = 1,
                 title = "App 1",
                 description = "App 1",
@@ -75,7 +75,7 @@ object TestDataProvider {
                 rating = 3.2f,
                 sizeInMB = 32
             ),
-            DhisApp(
+            Hospital(
                 id = 2,
                 title = "App 2",
                 description = "App 2",
@@ -85,7 +85,7 @@ object TestDataProvider {
                 rating = 3.2f,
                 sizeInMB = 26
             ),
-            DhisApp(
+            Hospital(
                 id = 3,
                 title = "App 3",
                 description = "App 3",

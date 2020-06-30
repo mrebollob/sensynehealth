@@ -80,18 +80,6 @@
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/font_normal"
                     android:visibility="gone" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/comment_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:paddingEnd="@dimen/card_side_margin"
-                    android:paddingStart="@dimen/card_side_margin"
-                    android:paddingTop="@dimen/header_margin"
-                    android:visibility="gone"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_comment" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
@@ -111,10 +99,10 @@
 
     <data>
 
-        <import type="com.dhis.store.core.entity.DhisApp" />
+        <import type="com.dhis.store.core.entity.Hospital" />
 
         <variable
             name="app"
-            type="com.dhis.store.core.entity.DhisApp" />
+            type="com.dhis.store.core.entity.Hospital" />
     </data>
 </layout>

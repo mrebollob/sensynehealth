@@ -2,7 +2,7 @@ package com.dhis.store.core.entity
 
 import java.util.*
 
-data class DhisApp(
+data class Hospital(
         val id: Int,
         val title: String,
         val description: String,

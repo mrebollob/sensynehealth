@@ -139,6 +139,6 @@
 
         <variable
             name="viewModel"
-            type="com.dhis.store.presentation.features.list.AppListViewModel" />
+            type="com.dhis.store.presentation.features.list.ListViewModel" />
     </data>
 </layout>

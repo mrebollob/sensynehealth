@@ -2,10 +2,10 @@ package com.dhis.store.presentation.features.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dhis.store.core.StoreRepository
+import com.dhis.store.core.SensyneRepository
 
 class DetailsViewModelFactory(
-    private val repository: StoreRepository,
+    private val repository: SensyneRepository,
     private val appId: Int
 ) : ViewModelProvider.Factory {
 

@@ -10,13 +10,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 
-class StoreRepositoryTest {
+class SensyneRepositoryTest {
 
     private val testApps = TestDataProvider.getTestApiApps()
 
     private val apiService: ApiService = mock()
     private val localDataSource: LocalDataSource = mock()
-    private val storeRepository = StoreRepositoryImp(apiService, localDataSource)
+    private val storeRepository = SensyneRepositoryImp(apiService, localDataSource)
 
     @ExperimentalCoroutinesApi
     @Test
@@ -24,7 +24,7 @@ class StoreRepositoryTest {
         runBlockingTest {
             whenever(apiService.getApps()).thenReturn(testApps)
 
-            storeRepository.getApps()
+            storeRepository.getHospitals()
 
             verify(apiService).getApps()
             verify(localDataSource).getApps()
