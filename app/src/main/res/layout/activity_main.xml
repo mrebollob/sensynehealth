@@ -96,6 +96,6 @@
 
         <variable
             name="viewModel"
-            type="com.dhis.store.presentation.features.list.ListViewModel" />
+            type="com.mrebollob.codetest.presentation.features.list.ListViewModel" />
     </data>
 </layout>

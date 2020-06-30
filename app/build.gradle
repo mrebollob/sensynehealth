@@ -14,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.dhis.store"
+        applicationId "com.mrebollob.codetest"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1

@@ -1,14 +1,11 @@
-# dhis
-Code test for dhis
+# Sensyne Health
+Code test for Sensyne Health
 
 
 # Some considerations
 
 ### Offline support
 To provide offline support we use the app local storage as data source. When the user enter in a section we download all the necessary data to the database and then we read this data from there. Also this could be used as cache in the future to reduce the network traffic.
-
-### Apps and comments
-The app comments are in a different entity outside the app data class. This will allow us to implement pagination easily some moment.
 
 ### Experimental coroutines
 As this is a test app I used some experimental coroutines.

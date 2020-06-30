@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "DHIS2 Store"
+rootProject.name = "codetest"

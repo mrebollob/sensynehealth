@@ -43,6 +43,6 @@
 
         <variable
             name="hospital"
-            type="com.dhis.store.core.entity.Hospital" />
+            type="com.mrebollob.codetest.core.entity.Hospital" />
     </data>
 </layout>

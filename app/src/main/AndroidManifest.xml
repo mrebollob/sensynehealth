@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dhis.store">
+    package="com.mrebollob.codetest">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.dhis.store.presentation.features.list.MainActivity"
+            android:name="com.mrebollob.codetest.presentation.features.list.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,7 +21,7 @@
         </activity>
 
         <activity
-            android:name="com.dhis.store.presentation.features.details.DetailsActivity"
+            android:name="com.mrebollob.codetest.presentation.features.details.DetailsActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
