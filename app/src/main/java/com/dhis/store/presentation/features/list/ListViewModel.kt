@@ -10,6 +10,7 @@ import com.dhis.store.core.entity.Failure
 import com.dhis.store.core.entity.Hospital
 import com.dhis.store.presentation.ErrorState
 import com.dhis.store.presentation.LoadingState
+import com.dhis.store.presentation.ReadyState
 import com.dhis.store.presentation.ScreenState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.catch
@@ -32,6 +33,7 @@ class ListViewModel(
         get() = _screenState
 
     init {
+        _screenState.value = LoadingState
         loadApps()
     }
 
@@ -40,14 +42,12 @@ class ListViewModel(
         viewModelScope.launch {
             sensyneRepository.getHospitals()
                 .onStart { _screenState.value = LoadingState }
-                .catch { exception ->
-                    exception.printStackTrace()
-                    _screenState.value = ErrorState(Failure.GENERIC_ERROR)
-                }
+                .catch { _screenState.value = ErrorState(Failure.GENERIC_ERROR) }
                 .collect { apps ->
                     hospitalsData.clear()
                     hospitalsData.addAll(apps)
                     _hospitals.value = apps
+                    _screenState.value = ReadyState
                 }
         }
     }

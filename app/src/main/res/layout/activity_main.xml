@@ -43,6 +43,15 @@
                     android:textSize="@dimen/font_large" />
             </LinearLayout>
 
+            <ProgressBar
+                android:id="@+id/loading_view"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:gravity="center"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/app_list"
                 android:layout_width="match_parent"

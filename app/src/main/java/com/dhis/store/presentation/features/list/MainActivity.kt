@@ -12,7 +12,6 @@ import com.dhis.store.presentation.ErrorState
 import com.dhis.store.presentation.LoadingState
 import com.dhis.store.presentation.ScreenState
 import com.dhis.store.presentation.extension.snack
-import com.dhis.store.presentation.extension.toast
 import com.dhis.store.presentation.extension.visible
 import com.dhis.store.presentation.features.details.DetailsActivity
 import com.google.android.material.snackbar.Snackbar
@@ -55,9 +54,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleScreenState(binding: ActivityMainBinding, state: ScreenState) {
-        when (state) {
-            LoadingState -> toast("Loading")
-            is ErrorState -> binding.appList.snack(message = "Error",
+        binding.loadingView.visible(state == LoadingState)
+
+        if (state is ErrorState) {
+            binding.appList.snack(message = "Error",
                 length = Snackbar.LENGTH_INDEFINITE,
                 actionText = "Retry",
                 action = { listViewModel.loadApps() })
