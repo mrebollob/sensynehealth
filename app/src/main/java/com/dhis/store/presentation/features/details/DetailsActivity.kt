@@ -16,7 +16,7 @@ class DetailsActivity : AppCompatActivity() {
     private val viewModel: DetailsViewModel by viewModels {
         InjectorUtils.provideDetailsViewModelFactory(
             this,
-            intent.getIntExtra(KEY_APP_ID, -1)
+            intent.getIntExtra(KEY_HOSPITAL_ID, -1)
         )
     }
 
@@ -36,18 +36,18 @@ class DetailsActivity : AppCompatActivity() {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             viewModel.app.observe(this@DetailsActivity) {
-                supportActionBar?.title = it.title
+                supportActionBar?.title = it.organisationName
                 app = it
             }
         }
     }
 
     companion object {
-        private const val KEY_APP_ID = "KEY_APP_ID"
+        private const val KEY_HOSPITAL_ID = "KEY_HOSPITAL_ID"
 
-        fun open(context: Context, appId: Int) {
+        fun open(context: Context, organisationId: Int) {
             val intent = Intent(context, DetailsActivity::class.java)
-            intent.putExtra(KEY_APP_ID, appId)
+            intent.putExtra(KEY_HOSPITAL_ID, organisationId)
             context.startActivity(intent)
         }
     }

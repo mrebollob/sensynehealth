@@ -1,7 +1,6 @@
 package com.dhis.store.presentation.features.list
 
 import android.os.Bundle
-import android.widget.SeekBar
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -18,9 +17,7 @@ import com.dhis.store.presentation.extension.toast
 import com.dhis.store.presentation.extension.visible
 import com.dhis.store.presentation.features.details.DetailsActivity
 import com.google.android.material.snackbar.Snackbar
-import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment
 import kotlinx.android.synthetic.main.view_filters.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 handleScreenState(binding, state)
             }
 
-            listViewModel.appFilter.observe(this@MainActivity) { appFilter ->
+            listViewModel.hospitalFilter.observe(this@MainActivity) { appFilter ->
 
                 if (appFilter.startDate != null &&
                     appFilter.endDate != null
@@ -76,40 +73,12 @@ class MainActivity : AppCompatActivity() {
 
             listViewModel.filters.observe(this@MainActivity) { filters ->
                 author_filter_view.visible(filters.contains(FilterType.AUTHOR))
-                size_filter_view.visible(filters.contains(FilterType.SIZE))
-                date_filter_value.visible(filters.contains(FilterType.DATE))
 
                 if (filters.contains(FilterType.DATE)) {
-                    date_selector.setOnClickListener {
-                        showDateSelector()
-                    }
-
                     clear_date_selector.setOnClickListener {
                         listViewModel.onDateFilterChanged(null, null)
                     }
                 }
-
-                filters_view.visible(filters.isNotEmpty())
-
-                size_filter_input.setOnSeekBarChangeListener(object :
-                    SeekBar.OnSeekBarChangeListener {
-                    override fun onProgressChanged(
-                        seekBar: SeekBar?,
-                        progress: Int,
-                        fromUser: Boolean
-                    ) {
-                        size_filter_value.text = getString(R.string.app_size_format, progress)
-                        listViewModel.onSizeFilterChanged(progress)
-                    }
-
-                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                        //NA
-                    }
-
-                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                        //NA
-                    }
-                })
             }
         }
     }
@@ -122,27 +91,5 @@ class MainActivity : AppCompatActivity() {
                 actionText = "Retry",
                 action = { listViewModel.loadApps() })
         }
-    }
-
-    private fun showDateSelector() {
-        val smoothDateRangePickerFragment =
-            SmoothDateRangePickerFragment.newInstance { _, yearStart, monthStart, dayStart,
-                                                        yearEnd, monthEnd, dayEnd ->
-
-                val startCalendar = Calendar.getInstance()
-                startCalendar.set(Calendar.YEAR, yearStart)
-                startCalendar.set(Calendar.MONTH, monthStart)
-                startCalendar.set(Calendar.DAY_OF_MONTH, dayStart)
-
-                val endCalendar = Calendar.getInstance()
-                endCalendar.set(Calendar.YEAR, yearEnd)
-                endCalendar.set(Calendar.MONTH, monthEnd)
-                endCalendar.set(Calendar.DAY_OF_MONTH, dayEnd)
-
-                listViewModel.onDateFilterChanged(startCalendar.time, endCalendar.time)
-            }
-
-        smoothDateRangePickerFragment.maxDate = Calendar.getInstance()
-        smoothDateRangePickerFragment.show(fragmentManager, "DateRangePicker")
     }
 }

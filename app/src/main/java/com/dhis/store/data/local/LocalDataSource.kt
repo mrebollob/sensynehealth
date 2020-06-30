@@ -3,8 +3,8 @@ package com.dhis.store.data.local
 import android.content.Context
 import android.content.SharedPreferences
 import com.dhis.store.core.entity.FilterType
-import com.dhis.store.data.local.dao.DhisAppDao
-import com.dhis.store.data.local.model.DbDhisAppModel
+import com.dhis.store.data.local.dao.HospitalDao
+import com.dhis.store.data.local.model.DbHospitalModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -12,7 +12,7 @@ private const val FILTERS_KEY = "FILTERS_KEY"
 private const val STORE_PREFERENCES = "STORE_PREFERENCES"
 
 class LocalDataSource(
-    private val dhisAppDao: DhisAppDao,
+    private val hospitalDao: HospitalDao,
     private val sharedPref: SharedPreferences
 ) {
 
@@ -34,13 +34,13 @@ class LocalDataSource(
         }
     }
 
-    fun getApps(): Flow<List<DbDhisAppModel>> = dhisAppDao.getApps()
+    fun getHospitals(): Flow<List<DbHospitalModel>> = hospitalDao.getHospitals()
 
-    fun getApp(id: Int): Flow<DbDhisAppModel> = dhisAppDao.getApp(id)
+    fun getHospital(id: Int): Flow<DbHospitalModel> = hospitalDao.getHospital(id)
 
-    suspend fun insertApps(apps: List<DbDhisAppModel>) {
-        dhisAppDao.nukeTable()
-        dhisAppDao.insertAll(apps)
+    suspend fun insertHospitals(hospitals: List<DbHospitalModel>) {
+        hospitalDao.nukeTable()
+        hospitalDao.insertAll(hospitals)
     }
 
     companion object {
@@ -57,7 +57,7 @@ class LocalDataSource(
         private fun buildInstance(context: Context): LocalDataSource {
             val dataBase = StoreDatabase.getInstance(context.applicationContext)
             return LocalDataSource(
-                dataBase.dhisAppDao(),
+                dataBase.hospitalDao(),
                 context.getSharedPreferences(STORE_PREFERENCES, Context.MODE_PRIVATE)
             )
         }

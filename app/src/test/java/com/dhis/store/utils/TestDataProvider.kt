@@ -1,15 +1,15 @@
 package com.dhis.store.utils
 
 import com.dhis.store.core.entity.Hospital
-import com.dhis.store.data.network.model.ApiDhisAppModel
+import com.dhis.store.data.network.model.ApiHospitalModel
 import java.util.*
 
 object TestDataProvider {
 
-    fun getTestApiApps(): List<ApiDhisAppModel> {
+    fun getTestApiApps(): List<ApiHospitalModel> {
 
         return listOf(
-            ApiDhisAppModel(
+            ApiHospitalModel(
                 id = 0,
                 title = "App 0",
                 description = "App 0",
@@ -19,7 +19,7 @@ object TestDataProvider {
                 rating = "3.2",
                 size = "16M"
             ),
-            ApiDhisAppModel(
+            ApiHospitalModel(
                 id = 1,
                 title = "App 1",
                 description = "App 1",
@@ -29,7 +29,7 @@ object TestDataProvider {
                 rating = "3.2",
                 size = "32M"
             ),
-            ApiDhisAppModel(
+            ApiHospitalModel(
                 id = 2,
                 title = "App 2",
                 description = "App 2",
@@ -39,7 +39,7 @@ object TestDataProvider {
                 rating = "3.2",
                 size = "26M"
             ),
-            ApiDhisAppModel(
+            ApiHospitalModel(
                 id = 3,
                 title = "App 3",
                 description = "App 3",

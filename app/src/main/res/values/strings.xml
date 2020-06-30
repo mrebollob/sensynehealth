@@ -15,8 +15,8 @@
     // Details screen
     <string name="details_screen_comments_section_title">Comments</string>
 
-    // App item view
-    <string name="app_rating_format">⭐ %1$.1f</string>
+    // Hospital item view
+    <string name="hospital_email_format">Email: %1$s</string>
     <string name="app_version_format">v. %1$s</string>
     <string name="app_size_format">%1$dM</string>
     <string name="app_author_format">Author: %1$s</string>

@@ -1,19 +1,18 @@
 package com.dhis.store.core
 
 import com.dhis.store.utils.TestDataProvider
-import com.dhis.store.core.entity.AppFilter
 import junit.framework.TestCase
 import org.junit.Test
 import java.util.*
 
-class AppFilterTest {
+class HospitalFilterTest {
 
     private val testApps = TestDataProvider.getTestApps()
 
     @Test
     fun `When filter apps by author, the list contains the only apps with this author`() {
         val testAuthor = "dev"
-        val filter = AppFilter(author = testAuthor)
+        val filter = HospitalFilter(author = testAuthor)
 
         val filteredApps = testApps.filter {
             filter.filter(it)
@@ -29,7 +28,7 @@ class AppFilterTest {
     @Test
     fun `When filter apps by maxSize, the list contains the only apps with less size`() {
         val testMaxSize = 26
-        val filter = AppFilter(maxSize = testMaxSize)
+        val filter = HospitalFilter(maxSize = testMaxSize)
 
         val filteredApps = testApps.filter {
             filter.filter(it)
@@ -44,7 +43,10 @@ class AppFilterTest {
     fun `When filter apps by publishDate, the list contains the only apps published in the date range`() {
         val startDate = Date(10)
         val endDate = Date(20)
-        val filter = AppFilter(startDate = startDate, endDate = endDate)
+        val filter = HospitalFilter(
+            startDate = startDate,
+            endDate = endDate
+        )
 
         val filteredApps = testApps.filter {
             filter.filter(it)
@@ -62,7 +64,7 @@ class AppFilterTest {
         val endDate = Date(20)
         val testMaxSize = 20
         val testAuthor = "dev"
-        val filter = AppFilter(
+        val filter = HospitalFilter(
             author = testAuthor,
             maxSize = testMaxSize,
             startDate = startDate,

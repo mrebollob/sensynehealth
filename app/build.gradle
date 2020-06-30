@@ -22,7 +22,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField(STRING, "BASE_URL", "\"http://10.0.2.2:9002\"")
+        buildConfigField(STRING, "BASE_URL", "\"https://media.nhschoices.nhs.uk\"")
     }
 
     buildTypes {
@@ -50,8 +50,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
 
-    implementation "com.leavjenn.smoothdaterangepicker:library:0.2.0"
-
     // LiveData
     def lifecycle_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
@@ -64,7 +62,6 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
     // room database
     def room_version = "2.2.5"

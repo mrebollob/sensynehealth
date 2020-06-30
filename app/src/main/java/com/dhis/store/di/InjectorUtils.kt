@@ -10,7 +10,6 @@ import com.dhis.store.presentation.features.list.ListViewModelFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 const val TIMEOUT_IN_SECONDS = 60L
@@ -32,7 +31,6 @@ object InjectorUtils {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(provideOkHttpClient(provideHttpLoggingInterceptor()))
-            .addConverterFactory(MoshiConverterFactory.create())
             .build().create(ApiService::class.java)
     }
 

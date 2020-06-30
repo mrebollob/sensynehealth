@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.collect
 
 class DetailsViewModel(
     private val sensyneRepository: SensyneRepository,
-    private val appId: Int
+    private val organisationId: Int
 ) : ViewModel() {
 
     val app: LiveData<Hospital> = liveData {
-        sensyneRepository.getHospital(appId)
+        sensyneRepository.getHospital(organisationId)
             .collect { apps -> emit(apps) }
     }
 }

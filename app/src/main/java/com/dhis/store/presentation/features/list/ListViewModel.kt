@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dhis.store.core.SensyneRepository
-import com.dhis.store.core.entity.AppFilter
-import com.dhis.store.core.entity.Hospital
+import com.dhis.store.core.HospitalFilter
 import com.dhis.store.core.entity.Failure
 import com.dhis.store.core.entity.FilterType
+import com.dhis.store.core.entity.Hospital
 import com.dhis.store.presentation.ErrorState
 import com.dhis.store.presentation.LoadingState
 import com.dhis.store.presentation.ScreenState
@@ -19,19 +19,14 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import java.util.*
 
-const val MAX_APP_SIZE = 100
-
 class ListViewModel(
     private val sensyneRepository: SensyneRepository
 ) : ViewModel() {
 
     private var appList: MutableList<Hospital> = mutableListOf()
 
-    private val _maxSize = MutableLiveData<Int>()
-    val maxSize: LiveData<Int> get() = _maxSize
-
-    private val _appFilter = MutableLiveData<AppFilter>()
-    val appFilter: LiveData<AppFilter> get() = _appFilter
+    private val _appFilter = MutableLiveData<HospitalFilter>()
+    val hospitalFilter: LiveData<HospitalFilter> get() = _appFilter
 
     private val _apps = MutableLiveData<List<Hospital>>()
     val apps: LiveData<List<Hospital>> get() = _apps
@@ -45,7 +40,7 @@ class ListViewModel(
 
     init {
         loadApps()
-        _appFilter.value = AppFilter()
+        _appFilter.value = HospitalFilter()
     }
 
     @ExperimentalCoroutinesApi
@@ -60,7 +55,6 @@ class ListViewModel(
                 .collect { apps ->
                     appList.clear()
                     appList.addAll(apps)
-                    _maxSize.value = apps.maxBy { it.sizeInMB }?.sizeInMB ?: MAX_APP_SIZE
                     _apps.value = apps
                 }
         }

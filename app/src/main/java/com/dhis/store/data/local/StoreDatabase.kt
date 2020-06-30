@@ -6,18 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.dhis.store.data.local.converter.Converters
-import com.dhis.store.data.local.dao.DhisAppDao
-import com.dhis.store.data.local.model.DbDhisAppModel
+import com.dhis.store.data.local.dao.HospitalDao
+import com.dhis.store.data.local.model.DbHospitalModel
 
 @Database(
-    entities = [DbDhisAppModel::class],
+    entities = [DbHospitalModel::class],
     version = 1,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class StoreDatabase : RoomDatabase() {
 
-    abstract fun dhisAppDao(): DhisAppDao
+    abstract fun hospitalDao(): HospitalDao
 
     companion object {
 
@@ -35,4 +35,4 @@ abstract class StoreDatabase : RoomDatabase() {
     }
 }
 
-const val DATABASE_NAME = "store-db"
+const val DATABASE_NAME = "test-code-db"

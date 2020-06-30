@@ -1,10 +1,10 @@
 package com.dhis.store.data.network
 
-import com.dhis.store.data.network.model.ApiDhisAppModel
+import okhttp3.ResponseBody
 import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("/apps")
-    suspend fun getApps(): List<ApiDhisAppModel>
+    @GET("/data/foi/Hospital.csv")
+    suspend fun getHospitals(): ResponseBody
 }

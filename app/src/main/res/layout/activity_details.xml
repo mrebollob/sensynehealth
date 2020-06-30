@@ -23,63 +23,16 @@
                     android:id="@+id/title_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{app.title}"
+                    android:text="@{app.organisationName}"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/font_larger" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/app_rating_format(app.rating)}"
+                    android:text="@{@string/hospital_email_format(app.email)}"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/font_normal" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_normal"
-                    android:text="@{app.description}"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/font_normal" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_normal"
-                    android:text="@{@string/app_author_format(app.author)}"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="@dimen/font_small" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{@string/app_date_format(app.publishDate)}"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="@dimen/font_small" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{@string/app_version_format(app.version)}"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="@dimen/font_small" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{@string/app_size_format(app.sizeInMB)}"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="@dimen/font_small" />
-
-                <TextView
-                    android:id="@+id/comments_title_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:text="@string/details_screen_comments_section_title"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/font_normal"
-                    android:visibility="gone" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

@@ -31,12 +31,12 @@ class HospitalsAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.setClickListener { binding.app?.let { clickListener(it.id) } }
+            binding.setClickListener { binding.hospital?.let { clickListener(it.organisationId) } }
         }
 
         fun bind(item: Hospital) {
             binding.apply {
-                app = item
+                hospital = item
                 executePendingBindings()
             }
         }
@@ -46,7 +46,7 @@ class HospitalsAdapter(
 private class AppDiffCallback : DiffUtil.ItemCallback<Hospital>() {
 
     override fun areItemsTheSame(oldItem: Hospital, newItem: Hospital): Boolean =
-        oldItem.id == newItem.id
+        oldItem.organisationId == newItem.organisationId
 
     override fun areContentsTheSame(oldItem: Hospital, newItem: Hospital): Boolean =
         oldItem == newItem
