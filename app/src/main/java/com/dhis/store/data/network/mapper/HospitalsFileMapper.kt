@@ -18,15 +18,17 @@ private const val NAME_IDX = 7
 private const val ADDRESS_1_IDX = 8
 private const val ADDRESS_2_IDX = 9
 private const val ADDRESS_3_IDX = 10
-private const val COUNTY_IDX = 11
-private const val POSTCODE_IDX = 12
-private const val LATITUDE_IDX = 13
-private const val LONGITUDE_IDX = 14
-private const val PARENT_ODS_CODE_IDX = 15
-private const val PARENT_NAME_IDX = 16
-private const val EMAIL_IDX = 17
-private const val WEB_IDX = 18
-private const val FAX_IDX = 19
+private const val CITY_IDX = 11
+private const val COUNTY_IDX = 12
+private const val POSTCODE_IDX = 13
+private const val LATITUDE_IDX = 14
+private const val LONGITUDE_IDX = 15
+private const val PARENT_ODS_CODE_IDX = 16
+private const val PARENT_NAME_IDX = 17
+private const val PHONE_IDX = 18
+private const val EMAIL_IDX = 19
+private const val WEB_IDX = 20
+private const val FAX_IDX = 21
 
 class HospitalsFileMapper {
 
@@ -56,17 +58,19 @@ class HospitalsFileMapper {
                         subType = tokens[SUB_TYPE_IDX],
                         sector = tokens[SECTOR_IDX],
                         organisationStatus = tokens[STATUS_IDX],
-                        isPimsManaged = tokens[PIM_MANAGED_IDX],
+                        isPimsManaged = tokens[PIM_MANAGED_IDX].toLowerCase().toBoolean(),
                         organisationName = tokens[NAME_IDX],
                         address1 = tokens[ADDRESS_1_IDX],
                         address2 = tokens[ADDRESS_2_IDX],
                         address3 = tokens[ADDRESS_3_IDX],
+                        city = tokens[CITY_IDX],
                         county = tokens[COUNTY_IDX],
                         postcode = tokens[POSTCODE_IDX],
                         latitude = tokens[LATITUDE_IDX],
                         longitude = tokens[LONGITUDE_IDX],
                         parentODSCode = tokens[PARENT_ODS_CODE_IDX],
                         parentName = tokens[PARENT_NAME_IDX],
+                        phone = tokens[PHONE_IDX],
                         email = tokens[EMAIL_IDX],
                         website = tokens[WEB_IDX],
                         fax = tokens[FAX_IDX]

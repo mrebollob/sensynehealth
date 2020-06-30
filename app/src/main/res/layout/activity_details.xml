@@ -23,14 +23,22 @@
                     android:id="@+id/title_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{app.organisationName}"
+                    android:text="@{hospital.organisationName}"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/font_larger" />
 
                 <TextView
                     android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/spacing_normal"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/hospital_email_format(app.email)}"
+                    android:text="@{@string/hospital_phone_format(hospital.phone)}"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/font_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/hospital_address_format(hospital.address1, hospital.address2, hospital.address3, hospital.city)}"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/font_normal" />
             </LinearLayout>
@@ -55,7 +63,7 @@
         <import type="com.dhis.store.core.entity.Hospital" />
 
         <variable
-            name="app"
+            name="hospital"
             type="com.dhis.store.core.entity.Hospital" />
     </data>
 </layout>

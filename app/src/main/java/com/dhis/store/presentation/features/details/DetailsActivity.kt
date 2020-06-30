@@ -37,7 +37,7 @@ class DetailsActivity : AppCompatActivity() {
 
             viewModel.app.observe(this@DetailsActivity) {
                 supportActionBar?.title = it.organisationName
-                app = it
+                hospital = it
             }
         }
     }
