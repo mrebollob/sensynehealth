@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.features.details.DetailsActivity">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_normal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{app.title}"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/font_larger" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/app_rating_format(app.rating)}"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/font_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@{app.description}"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/font_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@{@string/app_author_format(app.author)}"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/app_date_format(app.publishDate)}"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/app_version_format(app.version)}"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/app_size_format(app.sizeInMB)}"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:id="@+id/comments_title_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:text="@string/details_screen_comments_section_title"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/font_normal"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/comment_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingEnd="@dimen/card_side_margin"
+                    android:paddingStart="@dimen/card_side_margin"
+                    android:paddingTop="@dimen/header_margin"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_comment" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <data>
+
+        <import type="com.dhis.store.core.entity.DhisApp" />
+
+        <variable
+            name="app"
+            type="com.dhis.store.core.entity.DhisApp" />
+    </data>
+</layout>

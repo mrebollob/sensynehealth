@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/filters_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/spacing_small"
+        app:cardCornerRadius="@dimen/cardview_radius"
+        app:cardElevation="@dimen/cardview_elevation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_normal">
+
+            <LinearLayout
+                android:id="@+id/author_filter_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_screen_filter_by_author"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/font_normal" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconMode="clear_text">
+
+                    <EditText
+                        android:id="@+id/author_filter_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/list_screen_filter_author"
+                        android:onTextChanged="@{(text, start, before, count) -> viewModel.onAuthorFilterChanged(text)}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/font_normal"
+                    android:layout_marginTop="@dimen/font_normal"
+                    android:background="@color/divider" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/date_filter_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_screen_filter_by_publish_date"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/font_normal" />
+
+                <TextView
+                    android:id="@+id/date_filter_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/font_small" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/date_selector"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_tiny"
+                        android:layout_weight="1"
+                        android:text="@string/list_screen_filter_select_date" />
+
+                    <Button
+                        android:id="@+id/clear_date_selector"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_tiny"
+                        android:layout_weight="1"
+                        android:text="@string/list_screen_filter_clear_date" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/font_normal"
+                    android:layout_marginTop="@dimen/font_normal"
+                    android:background="@color/divider" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/size_filter_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_screen_filter_by_size"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/font_normal" />
+
+                <SeekBar
+                    android:id="@+id/size_filter_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@{viewModel.maxSize}"
+                    android:progress="@{viewModel.maxSize}" />
+
+                <TextView
+                    android:id="@+id/size_filter_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/font_small" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dhis.store.presentation.features.list.AppListViewModel" />
+    </data>
+</layout>

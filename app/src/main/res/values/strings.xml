@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">DHIS2 Store</string>
+    <string name="action_settings">Settings</string>
+
+    // List screen
+    <string name="list_screen_filter_author">Author</string>
+    <string name="list_screen_filter_select_date">Select date</string>
+    <string name="list_screen_filter_clear_date">Clear date</string>
+    <string name="list_screen_filter_by_author">Filter by author</string>
+    <string name="list_screen_filter_by_publish_date">Filter by publish date</string>
+    <string name="list_screen_filter_by_size">Filter by size (max)</string>
+    <string name="list_screen_filter_by_publish_date_value">%1$te/%1$tm/%1$tY - %2$te/%2$tm/%2$tY</string>
+    <string name="list_screen_empty_view_text">You don\'t have any app available</string>
+
+    // Details screen
+    <string name="details_screen_comments_section_title">Comments</string>
+
+    // App item view
+    <string name="app_rating_format">⭐ %1$.1f</string>
+    <string name="app_version_format">v. %1$s</string>
+    <string name="app_size_format">%1$dM</string>
+    <string name="app_author_format">Author: %1$s</string>
+    <string name="app_date_format">Publish date: %1$te/%1$tm/%1$tY</string>
+</resources>
