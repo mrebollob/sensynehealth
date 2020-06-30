@@ -6,13 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.dhis.store.data.local.converter.Converters
-import com.dhis.store.data.local.dao.AppCommentDao
 import com.dhis.store.data.local.dao.DhisAppDao
-import com.dhis.store.data.local.model.DbAppCommentsModel
 import com.dhis.store.data.local.model.DbDhisAppModel
 
 @Database(
-    entities = [DbDhisAppModel::class, DbAppCommentsModel::class],
+    entities = [DbDhisAppModel::class],
     version = 1,
     exportSchema = false
 )
@@ -20,7 +18,6 @@ import com.dhis.store.data.local.model.DbDhisAppModel
 abstract class StoreDatabase : RoomDatabase() {
 
     abstract fun dhisAppDao(): DhisAppDao
-    abstract fun appCommentDao(): AppCommentDao
 
     companion object {
 

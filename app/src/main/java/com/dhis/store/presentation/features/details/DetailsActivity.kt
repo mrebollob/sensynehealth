@@ -10,7 +10,6 @@ import androidx.lifecycle.observe
 import com.dhis.store.R
 import com.dhis.store.databinding.ActivityDetailsBinding
 import com.dhis.store.di.InjectorUtils
-import com.dhis.store.presentation.extension.visible
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -30,8 +29,6 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun initUI(binding: ActivityDetailsBinding) {
-        val adapter = CommentsAdapter()
-
         binding.apply {
             setSupportActionBar(toolbar)
             toolbar.setNavigationOnClickListener { onBackPressed() }
@@ -41,14 +38,6 @@ class DetailsActivity : AppCompatActivity() {
             viewModel.app.observe(this@DetailsActivity) {
                 supportActionBar?.title = it.title
                 app = it
-            }
-
-            commentList.adapter = adapter
-
-            viewModel.comments.observe(this@DetailsActivity) { apps ->
-                commentsTitleView.visible(apps.isNotEmpty())
-                commentList.visible(apps.isNotEmpty())
-                adapter.submitList(apps)
             }
         }
     }

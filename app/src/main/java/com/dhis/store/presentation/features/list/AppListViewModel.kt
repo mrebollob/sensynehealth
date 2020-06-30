@@ -64,11 +64,6 @@ class AppListViewModel(
                     _apps.value = apps
                 }
         }
-
-        viewModelScope.launch {
-            storeRepository.getFilters()
-                .collect { filters -> _filters.value = filters }
-        }
     }
 
     fun onAuthorFilterChanged(text: CharSequence) {

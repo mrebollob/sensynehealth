@@ -3,9 +3,7 @@ package com.dhis.store.data.local
 import android.content.Context
 import android.content.SharedPreferences
 import com.dhis.store.core.entity.FilterType
-import com.dhis.store.data.local.dao.AppCommentDao
 import com.dhis.store.data.local.dao.DhisAppDao
-import com.dhis.store.data.local.model.DbAppCommentsModel
 import com.dhis.store.data.local.model.DbDhisAppModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -15,7 +13,6 @@ private const val STORE_PREFERENCES = "STORE_PREFERENCES"
 
 class LocalDataSource(
     private val dhisAppDao: DhisAppDao,
-    private val appCommentDao: AppCommentDao,
     private val sharedPref: SharedPreferences
 ) {
 
@@ -46,14 +43,6 @@ class LocalDataSource(
         dhisAppDao.insertAll(apps)
     }
 
-    fun getCommentsForApp(appId: Int): Flow<List<DbAppCommentsModel>> =
-        appCommentDao.getCommentsForApp(appId)
-
-    suspend fun insertComments(comments: List<DbAppCommentsModel>) {
-        appCommentDao.nukeTable()
-        appCommentDao.insertAll(comments)
-    }
-
     companion object {
         @Volatile
         private var instance: LocalDataSource? = null
@@ -69,7 +58,6 @@ class LocalDataSource(
             val dataBase = StoreDatabase.getInstance(context.applicationContext)
             return LocalDataSource(
                 dataBase.dhisAppDao(),
-                dataBase.appCommentDao(),
                 context.getSharedPreferences(STORE_PREFERENCES, Context.MODE_PRIVATE)
             )
         }
