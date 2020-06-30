@@ -1,6 +1,7 @@
 package com.dhis.store.utils
 
 import com.dhis.store.core.entity.Hospital
+import com.dhis.store.core.entity.Sector
 import com.dhis.store.data.network.model.ApiHospitalModel
 
 object TestDataProvider {
@@ -24,13 +25,15 @@ object TestDataProvider {
         "subtype_$seed",
         "sector_$seed",
         "status_$seed",
-        "is_$seed",
+        false,
         "name_$seed",
         "address_$seed",
         "",
         "",
         "country_$seed",
         "postcode_$seed",
+        "",
+        "",
         "",
         "",
         "",
@@ -45,15 +48,17 @@ object TestDataProvider {
         "code_$seed",
         "type_$seed",
         "subtype_$seed",
-        "sector_$seed",
+        if (seed % 2 == 0) Sector.NHS else Sector.INDEPENDENT,
         "status_$seed",
-        "is_$seed",
+        false,
         "name_$seed",
         "address_$seed",
         "",
         "",
         "country_$seed",
         "postcode_$seed",
+        "",
+        "",
         "",
         "",
         "",

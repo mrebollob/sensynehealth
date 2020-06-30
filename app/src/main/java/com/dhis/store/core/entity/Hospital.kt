@@ -5,7 +5,7 @@ data class Hospital(
     val organisationCode: String,
     val organisationType: String,
     val subType: String,
-    val sector: String,
+    val sector: Sector,
     val organisationStatus: String,
     val isPimsManaged: Boolean,
     val organisationName: String,

@@ -22,9 +22,7 @@ class ListViewModel(
 ) : ViewModel() {
 
     private var hospitalsData: MutableList<Hospital> = mutableListOf()
-
-    private val _hospitalFilter = MutableLiveData<HospitalFilter>()
-    val hospitalFilter: LiveData<HospitalFilter> get() = _hospitalFilter
+    private var hospitalFilter = HospitalFilter()
 
     private val _hospitals = MutableLiveData<List<Hospital>>()
     val hospitals: LiveData<List<Hospital>> get() = _hospitals
@@ -35,7 +33,6 @@ class ListViewModel(
 
     init {
         loadApps()
-        _hospitalFilter.value = HospitalFilter()
     }
 
     @ExperimentalCoroutinesApi
@@ -56,13 +53,18 @@ class ListViewModel(
     }
 
     fun onNameFilterChanged(text: CharSequence) {
-        _hospitalFilter.value = _hospitalFilter.value?.copy(name = text.toString())
+        hospitalFilter = hospitalFilter.copy(name = text.toString())
+        applyFilter()
+    }
+
+    fun onShowNHSFilterChanged(showNHS: Boolean) {
+        hospitalFilter = hospitalFilter.copy(showNHS = showNHS)
         applyFilter()
     }
 
     private fun applyFilter() {
         _hospitals.value = hospitalsData.filter {
-            _hospitalFilter.value?.filter(it) ?: true
+            hospitalFilter.filter(it)
         }
     }
 }

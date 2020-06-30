@@ -3,6 +3,7 @@ package com.dhis.store.data.local.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.dhis.store.core.entity.Hospital
+import com.dhis.store.core.entity.Sector
 
 @Entity(tableName = "hospitals")
 data class DbHospitalModel(
@@ -35,7 +36,7 @@ data class DbHospitalModel(
             organisationCode = organisationCode,
             organisationType = organisationType,
             subType = subType,
-            sector = sector,
+            sector = parseSector(sector),
             organisationStatus = organisationStatus,
             isPimsManaged = isPimsManaged,
             organisationName = organisationName,
@@ -54,5 +55,10 @@ data class DbHospitalModel(
             website = website,
             fax = fax
         )
+    }
+
+    private fun parseSector(sector: String): Sector = when (sector) {
+        "NHS Sector" -> Sector.NHS
+        else -> Sector.INDEPENDENT
     }
 }

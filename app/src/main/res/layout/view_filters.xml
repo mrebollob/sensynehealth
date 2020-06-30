@@ -16,33 +16,32 @@
             android:orientation="vertical"
             android:padding="@dimen/spacing_normal">
 
-            <LinearLayout
-                android:id="@+id/author_filter_view"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:text="@string/list_screen_filter_by_name"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/font_normal" />
 
-                <TextView
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text">
+
+                <EditText
+                    android:id="@+id/author_filter_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/list_screen_filter_by_name"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/font_normal" />
+                    android:ems="10"
+                    android:hint="@string/list_screen_filter_name"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onNameFilterChanged(text)}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:endIconMode="clear_text">
-
-                    <EditText
-                        android:id="@+id/author_filter_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="@string/list_screen_filter_name"
-                        android:onTextChanged="@{(text, start, before, count) -> viewModel.onNameFilterChanged(text)}" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/list_screen_filter_show_nhs"
+                android:onCheckedChangeListener="@{(button, check) -> viewModel.onShowNHSFilterChanged(check)}" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

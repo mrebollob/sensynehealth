@@ -5,6 +5,7 @@
     // List screen
     <string name="list_screen_filter_name">Name</string>
     <string name="list_screen_filter_by_name">Filter by name</string>
+    <string name="list_screen_filter_show_nhs">Show NHS only</string>
     <string name="list_screen_empty_view_text">You don\'t have any hospital available</string>
 
     // Details screen
