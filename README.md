@@ -12,3 +12,7 @@ As this is a test app I used some experimental coroutines.
 
 ### Tests
 For now the android test need a real server to run. In the future we could add a mock for the api service or a mock server.
+
+# Run the app
+
+To run the app you can follow this steps: [How to run an Android app](https://github.com/MicrosoftDocs/windows-uwp/blob/bac28c894585e874d8dc4544e548f0c3478aa856/hub/android/emulator.md)
