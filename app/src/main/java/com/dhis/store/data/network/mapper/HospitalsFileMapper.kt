@@ -34,6 +34,7 @@ class HospitalsFileMapper {
 
     fun map(body: ResponseBody): List<ApiHospitalModel> {
         var fileReader: BufferedReader? = null
+        var hospitalList: List<ApiHospitalModel>
 
         try {
             val apiHospitals = ArrayList<ApiHospitalModel>()
@@ -80,18 +81,20 @@ class HospitalsFileMapper {
                 line = fileReader.readLine()
             }
 
-            return apiHospitals
-        } catch (e: Exception) {
+            hospitalList = apiHospitals
+        } catch (e: IOException) {
             Log.e("HospitalsFileMapper", "Reading CSV Error!", e)
-            return emptyList()
+            hospitalList = emptyList()
         } finally {
             try {
                 fileReader!!.close()
             } catch (e: IOException) {
                 Log.e("HospitalsFileMapper", "Closing fileReader Error!", e)
-                return emptyList()
+                hospitalList = emptyList()
             }
         }
+
+        return hospitalList
     }
 
     companion object {
@@ -100,13 +103,9 @@ class HospitalsFileMapper {
 
         fun getInstance() =
             instance ?: synchronized(this) {
-                instance ?: buildInstance().also {
+                instance ?: HospitalsFileMapper().also {
                     instance = it
                 }
             }
-
-        private fun buildInstance(): HospitalsFileMapper {
-            return HospitalsFileMapper()
-        }
     }
 }

@@ -8,7 +8,7 @@ import com.agoda.kakao.screen.Screen
 import com.dhis.store.R
 import org.hamcrest.Matcher
 
-class AppListScreen : Screen<AppListScreen>() {
+class ListScreen : Screen<ListScreen>() {
 
     val filtersView: KView = KView { withId(R.id.filters_view) }
     val appListView: KRecyclerView = KRecyclerView({
@@ -23,7 +23,7 @@ class AppListScreen : Screen<AppListScreen>() {
 
     fun navigateToFirstItem() {
         appListView {
-            firstChild<AppListScreen.Item> {
+            firstChild<Item> {
                 click()
                 idle(500)
                 click()
