@@ -6,7 +6,6 @@
         android:id="@+id/filters_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_margin="@dimen/spacing_small"
         app:cardCornerRadius="@dimen/cardview_radius"
         app:cardElevation="@dimen/cardview_elevation">
@@ -26,7 +25,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/list_screen_filter_by_author"
+                    android:text="@string/list_screen_filter_by_name"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/font_normal" />
 
@@ -40,71 +39,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="@string/list_screen_filter_author"
-                        android:onTextChanged="@{(text, start, before, count) -> viewModel.onAuthorFilterChanged(text)}" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="@dimen/font_normal"
-                    android:layout_marginTop="@dimen/font_normal"
-                    android:background="@color/divider" />
+                        android:hint="@string/list_screen_filter_name"
+                        android:onTextChanged="@{(text, start, before, count) -> viewModel.onNameFilterChanged(text)}" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/date_filter_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/list_screen_filter_by_publish_date"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/font_normal" />
-
-                <TextView
-                    android:id="@+id/date_filter_value"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="@dimen/font_small" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/date_selector"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_tiny"
-                        android:layout_weight="1"
-                        android:text="@string/list_screen_filter_select_date" />
-
-                    <Button
-                        android:id="@+id/clear_date_selector"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_tiny"
-                        android:layout_weight="1"
-                        android:text="@string/list_screen_filter_clear_date" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="@dimen/font_normal"
-                    android:layout_marginTop="@dimen/font_normal"
-                    android:background="@color/divider" />
-            </LinearLayout>
-
-
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

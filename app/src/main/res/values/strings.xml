@@ -3,10 +3,10 @@
     <string name="action_settings">Settings</string>
 
     // List screen
-    <string name="list_screen_filter_author">Author</string>
+    <string name="list_screen_filter_name">Name</string>
     <string name="list_screen_filter_select_date">Select date</string>
     <string name="list_screen_filter_clear_date">Clear date</string>
-    <string name="list_screen_filter_by_author">Filter by author</string>
+    <string name="list_screen_filter_by_name">Filter by name</string>
     <string name="list_screen_filter_by_publish_date">Filter by publish date</string>
     <string name="list_screen_filter_by_size">Filter by size (max)</string>
     <string name="list_screen_filter_by_publish_date_value">%1$te/%1$tm/%1$tY - %2$te/%2$tm/%2$tY</string>

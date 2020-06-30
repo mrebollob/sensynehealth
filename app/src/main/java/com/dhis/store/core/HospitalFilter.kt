@@ -1,13 +1,9 @@
 package com.dhis.store.core
 
 import com.dhis.store.core.entity.Hospital
-import java.util.*
 
 data class HospitalFilter(
-    val author: String = "",
-    val maxSize: Int? = null,
-    val startDate: Date? = null,
-    val endDate: Date? = null
+    val name: String = ""
 ) {
 
     fun filter(app: Hospital): Boolean {
@@ -15,5 +11,5 @@ data class HospitalFilter(
     }
 
     private fun matchAuthor(app: Hospital): Boolean =
-        author.isEmpty()
+        name.isEmpty() || app.organisationName.toLowerCase().contains(name.toLowerCase())
 }
